@@ -16,7 +16,9 @@ defmodule PokemonApp.Application do
       # Start a worker by calling: PokemonApp.Worker.start_link(arg)
       # {PokemonApp.Worker, arg},
       # Start to serve requests, typically the last entry
-      PokemonAppWeb.Endpoint
+      PokemonAppWeb.Endpoint,
+      # Adiciona o GenServer da lista de Pokémons
+      PokemonApp.PokemonList
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

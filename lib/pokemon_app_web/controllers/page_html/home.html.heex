@@ -4,12 +4,25 @@
   <button type="submit">Procurar</button>
 </form>
 
+<%= if @pokemon_list && length(@pokemon_list) > 0 do %>
+  <h2>Results:</h2>
+  <ul>
+    <%= for pokemon <- @pokemon_list do %>
+      <li>
+        <p>Name: <%= pokemon["name"] %></p>
+        <p>Id: <%= pokemon["id"] %></p>
+        <img src={pokemon["sprites"]["front_default"]} alt={pokemon["name"]} />
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= if @pokemon do %>
   <h2>Result:</h2>
   <p>Name: <%= @pokemon["name"] %></p>
   <p>Id: <%= @pokemon["id"] %></p>
   <img src={@pokemon["sprites"]["front_default"]} alt={@pokemon["name"]} />
-  
+
   <div>
     <%= if @pokemon["id"] > 1 do %>
       <form phx-submit="search_pokemon">
