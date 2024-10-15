@@ -3,3 +3,21 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3f9444;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}

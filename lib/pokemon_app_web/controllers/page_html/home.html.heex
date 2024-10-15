@@ -1,41 +1,43 @@
-<h1>Search for a Pokémon</h1>
+<h1 class="text-3xl font-bold text-center m-3">Search for a Pokémon</h1>
 <form phx-submit="search_pokemon">
-  <input type="text" name="pokemon" placeholder="Pokémon Name (or id)" />
-  <button type="submit">Procurar</button>
+  <input type="text" name="pokemon" placeholder="Name (or id)" class="p-2.5 border border-solid border-gray-300 rounded mr-2.5"/>
+  <button type="submit">Search</button>
 </form>
 
 <%= if @pokemon_list && length(@pokemon_list) > 0 do %>
-  <h2>Results:</h2>
-  <ul>
+  <ul class="flex justify-center flex-wrap mt-7">
     <%= for pokemon <- @pokemon_list do %>
-      <li>
-        <p>Name: <%= pokemon["name"] %></p>
+      <li class="hover:scale-105 bg-gray-300 m-2 p-2.5 rounded-xl shadow-md transition-transform">
         <p>Id: <%= pokemon["id"] %></p>
-        <img src={pokemon["sprites"]["front_default"]} alt={pokemon["name"]} />
+        <p>Name: <%= pokemon["name"] %></p>
+        <img src={pokemon["sprites"]["front_default"]} alt={pokemon["name"]} class="mx-auto"/>
       </li>
     <% end %>
   </ul>
 <% end %>
 
 <%= if @pokemon do %>
-  <h2>Result:</h2>
-  <p>Name: <%= @pokemon["name"] %></p>
-  <p>Id: <%= @pokemon["id"] %></p>
-  <img src={@pokemon["sprites"]["front_default"]} alt={@pokemon["name"]} />
+    <a class="flex justify-center">
+      <div class="hover:scale-105 bg-gray-300 m-7 p-2.5 rounded-xl shadow-md transition-transform ">
+        <p>Id: <%= @pokemon["id"] %></p>
+        <p>Name: <%= @pokemon["name"] %></p>
+        <img src={@pokemon["sprites"]["front_default"]} alt={@pokemon["name"]} class="mx-auto"/>
+      </div>  
+    </a>
 
-  <div>
-    <%= if @pokemon["id"] > 1 do %>
-      <form phx-submit="search_pokemon">
-        <input type="hidden" name="pokemon" value={@pokemon["id"] - 1} />
-        <button type="submit">Previous</button>
-      </form>
-    <% end %>
+      <div class="flex justify-center">
+        <%= if @pokemon["id"] > 1 do %>
+          <form phx-submit="search_pokemon">
+            <input type="hidden" name="pokemon" value={@pokemon["id"] - 1} />
+            <button type="submit">Previous</button>
+          </form>
+        <% end %>
 
-    <%= if @pokemon["id"] < 1025 do %>
-      <form phx-submit="search_pokemon">
-        <input type="hidden" name="pokemon" value={@pokemon["id"] + 1} />
-        <button type="submit">Next</button>
-      </form>
-    <% end %>
-  </div>
+        <%= if @pokemon["id"] < 1025 do %>
+          <form phx-submit="search_pokemon">
+            <input type="hidden" name="pokemon" value={@pokemon["id"] + 1} />
+            <button type="submit">Next</button>
+          </form>
+        <% end %>
+      </div>
 <% end %>

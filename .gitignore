@@ -35,3 +35,5 @@ pokemon_app-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore assets that are automatically produced by mix assets.deploy.
+/priv/static/assets/
