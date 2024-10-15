@@ -2,7 +2,6 @@ defmodule PokemonApp.PokemonListTest do
   use ExUnit.Case
 
   test "search/1 returns a list of pokemons that contains the given text" do
-
     expected_result = [
       "charmander",
       "charmeleon",
@@ -19,7 +18,6 @@ defmodule PokemonApp.PokemonListTest do
   end
 
   test "search/1 returns an empty list if no pokemon contains the given text" do
-
     expected_result = []
 
     result = PokemonApp.PokemonList.search("not_a_pokemon")

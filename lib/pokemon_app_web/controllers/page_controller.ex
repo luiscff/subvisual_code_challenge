@@ -5,7 +5,7 @@ defmodule PokemonAppWeb.PageController do
 
   def home(conn, %{"pokemon" => pokemon_name}) do
     case Integer.parse(pokemon_name) do
-      #quando é um número trata como id (problema: caso se pesquise "50", encontra o id 50 e não pokemons com 50
+      # quando é um número trata como id (problema: caso se pesquise "50", encontra o id 50 e não pokemons com 50
       # no nome [ex: "zygarde-50"])
       {_pokemon_id, _} ->
         case PokeAPI.get_pokemon(pokemon_name) do
@@ -18,7 +18,7 @@ defmodule PokemonAppWeb.PageController do
             |> render(:home, pokemon_list: [], pokemon: nil)
         end
 
-      #tudo o resto trata como um nome de pokemon
+      # tudo o resto trata como um nome de pokemon
       _ ->
         pokemon_names = PokemonList.search(pokemon_name)
 
