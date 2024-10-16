@@ -19,14 +19,23 @@ This is a Phoenix application that allows users to search for Pokémon by name o
 - The application does not have a cache mechanism. This was an optional requirement that I did not complete because I have already spent the recommended amount of time on this project.
 
 
-## Technologies Used
+## Future Improvements
+- Implement a cache mechanism to store Pokémon data and reduce the number of requests to the PokeAPI.
+- Implement pagination for when the text-based search feature returns more than 10 results.
+- Improve the text-based search feature's efficiency (possibly by using a trie data structure).
+- Refactor the ID-based navigation to make it more responsive (possibly using LiveView events). This would also allow using numbers in the input without the application treating them as IDs (which would mean that it would no longer be possible to search by ID but this could be implemented in a different way later).
+- Add more information about the Pokémon, such as its type.
+- Add more features, such as the ability to order Pokémon alphabetically or by ID (currently, they are ordered by ID) and the ability to filter Pokémon by type.
+- Improve the application's design and user interface. 
 
-- **Phoenix Framework**: The backend framework used for rendering the interface and handling requests.
-- **PokeAPI**: Public API used to fetch Pokémon data.
-- **HTTPoison**: To make HTTP requests to PokeAPI.
-- **Jason**: Used to parse the JSON responses from PokeAPI.
 
-## How to Run the Project
+
+## Deployment
+
+The application is deployed and can be accessed at [https://subvisual-code-challenge.onrender.com/](https://subvisual-code-challenge.onrender.com/).
+
+
+## How to Run the Project Locally
 
 1. Clone the repository and navigate to the project directory:
 
@@ -36,14 +45,14 @@ git clone https://github.com/luiscff/pokemon_app.git
 cd pokemon_app
 ```
 
-## 2. Install Dependencies
+2. Install Dependencies
 
 To install the necessary dependencies, run:
 
 ```bash
 mix setup
 ```
-## 3. Run the Application
+3. Run the Application
 
 To start the Phoenix endpoint, run:
 
@@ -61,9 +70,9 @@ By default, the application will be available at http://localhost:4000 from your
 
 4. Usage
 
-    On the homepage, you can search for a Pokémon by entering its name or ID.
+    On the homepage, you can search for one Pokémon by entering its name or ID. 
     The Pokémon's name, ID, and sprite will be displayed if found.
-    You can use the "Previous" and "Next" buttons to navigate between Pokémon by their ID.
+    You can use the "Previous" and "Next" buttons to navigate between Pokémon by their ID (unless the search returns multiple results).
 
 5. Tests
 
@@ -73,14 +82,12 @@ To run the automated tests, execute the following command:
 mix test
 ```
 
-## Future Improvements
-- Implement a cache mechanism to store Pokémon data and reduce the number of requests to the PokeAPI.
-- Implement pagination for when the text-based search feature returns more than 10 results.
-- Improve the text-based search feature's efficiency (possibly by using a trie data structure).
-- Refactor the ID-based navigation to make it more responsive (possibly using LiveView events). This would also allow using numbers in the input without the application treating them as IDs (which would mean that it would no longer be possible to search by ID but this could be implemented in a different way later).
-- Add more information about the Pokémon, such as its type.
-- Add more features, such as the ability to order Pokémon alphabetically or by ID (currently, they are ordered by ID) and the ability to filter Pokémon by type.
-- Improve the application's design and user interface. 
+## Technologies Used
+
+- **Phoenix Framework**: The backend framework used for rendering the interface and handling requests.
+- **PokeAPI**: Public API used to fetch Pokémon data.
+- **HTTPoison**: To make HTTP requests to PokeAPI.
+- **Jason**: Used to parse the JSON responses from PokeAPI.
 
 ## Notes
 
