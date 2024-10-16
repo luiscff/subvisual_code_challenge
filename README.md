@@ -1,6 +1,6 @@
 # Pokémon Search Application
 
-This is a Phoenix application that allows users to search for Pokémon by name or ID, using the [PokeAPI](https://pokeapi.co). The app displays basic information such as the Pokémon's name, ID, and sprite. It also includes navigation buttons to allow users to move to the previous or next Pokémon when a single Pokémon is found. When the result is a list of Pokémon, the app displays all of them without the navigation buttons.
+This is a Phoenix application made to complete the Coding Challenge for the Apprenticeship Developer position at Subvisual. It allows users to search for Pokémon by name or ID, using the [PokeAPI](https://pokeapi.co). The app displays basic information such as the Pokémon's name, ID, and sprite. It also includes navigation buttons to allow users to move to the previous or next Pokémon when a single Pokémon is found. When the result is a list of Pokémon, the app displays all of them without the navigation buttons.
 
 ## Features
 
@@ -37,7 +37,7 @@ The application is deployed and can be accessed at [https://subvisual-code-chall
 
 ## How to Run the Project Locally
 
-1. Clone the repository and navigate to the project directory:
+#### 1. Clone the repository and navigate to the project directory:
 
 ```bash
 git clone https://github.com/luiscff/pokemon_app.git
@@ -45,14 +45,14 @@ git clone https://github.com/luiscff/pokemon_app.git
 cd pokemon_app
 ```
 
-2. Install Dependencies
+#### 2. Install Dependencies
 
 To install the necessary dependencies, run:
 
 ```bash
 mix setup
 ```
-3. Run the Application
+#### 3. Run the Application
 
 To start the Phoenix endpoint, run:
 
@@ -68,13 +68,13 @@ iex -S mix phx.server
 
 By default, the application will be available at http://localhost:4000 from your browser.
 
-4. Usage
+#### 4. Usage
 
     On the homepage, you can search for one Pokémon by entering its name or ID. 
     The Pokémon's name, ID, and sprite will be displayed if found.
     You can use the "Previous" and "Next" buttons to navigate between Pokémon by their ID (unless the search returns multiple results).
 
-5. Tests
+#### 5. Tests
 
 To run the automated tests, execute the following command:
 
