@@ -1,11 +1,11 @@
 # Pokémon Search Application
 
-This is a Phoenix application that allows users to search for Pokémon by name or ID, using the [PokeAPI](https://pokeapi.co). The app displays basic information such as the Pokémon’s name, ID, and sprite. It also includes navigation buttons to allow users to move to the previous or next Pokémon when the result is a single Pokémon. When the result is a list of Pokémon, the app displays all of them without the navigation buttons.
+This is a Phoenix application that allows users to search for Pokémon by name or ID, using the [PokeAPI](https://pokeapi.co). The app displays basic information such as the Pokémon's name, ID, and sprite. It also includes navigation buttons to allow users to move to the previous or next Pokémon when a single Pokémon is found. When the result is a list of Pokémon, the app displays all of them without the navigation buttons.
 
 ## Features
 
 - Search by Pokémon name or ID
-- Display Pokémon name, ID, and sprite when a single result is found
+- Display the Pokémon's name, ID and sprite when a single result is found
 - Display list of Pokémon when multiple results are found
 - Navigation between Pokémon using "Previous" and "Next" buttons
 - Error handling when a Pokémon is not found
@@ -13,15 +13,15 @@ This is a Phoenix application that allows users to search for Pokémon by name o
 
 ## (Some) Decisions Made
 - The application was built using the Phoenix framework, not only because it is a robust and reliable tool for building web applications but also because it is a technology I am somewhat familiar with.
-- The ID navigation buttons are forms that send a GET request to the server with the ID of the Pokémon to be displayed (either the previous or the next one). This works by simply adding the id number to the end of the same URL that is used when searching for a Pokémon by name. This was made this way because it is a simple and effective way to navigate between Pokémon. I have also considered using LiveView events to handle this, making it more responsive but I decided against it because I have never done it before and because it would probably be overkill.
-- It is possible to search for pokemon ID's because it is always assumed that when the input is a number, it is an ID (useful for dealing with the navigation buttons' requests). There is, however, a downside to this: if a Pokémon has a number in its name (like "Zygarde-50" [which technically is not its name, but the keyword used to search for it in the API]), the application will treat normally when typed entirely in the search bar, but if only the number is typed, the application will treat it as an ID and try to fetch the Pokémon with that ID. While this is a very specific case, it is still a limitation that was introduced by my implementation of the navigation buttons.
-- The text-based search feature was implemented by fetching all Pokémon names (actually, the keywords used to search for them in the API) and then checking if the list contains any element that contais the input string (case insensitive). I am aware that this is quite inefficient but it was the most straightforward way to implement this feature.
+- The ID navigation buttons are forms that send a GET request to the server with the ID of the Pokémon to be displayed (either the previous or the next one). This works by simply adding the id number to the end of the same URL that is used when searching for a Pokémon by name. This approach was chosen because it is a simple and effective way to navigate between Pokémon. I have also considered using LiveView events to handle this, making it more responsive but I decided against it because I have never done it before and because it would probably be overkill.
+- It is possible to search for Pokémon IDs because it is always assumed that when the input is a number, it is an ID (useful for dealing with the navigation buttons' requests). There is, however, a downside to this: if a Pokémon has a number in its name (like "Zygarde-50" [which technically is not its name, but the keyword used to search for it in the API]), the application will treat normally when typed entirely in the search bar, but if only the number is typed, the application will treat it as an ID and try to fetch the Pokémon with that ID. While this is a very specific case, it is still a limitation that was introduced by my implementation of the navigation buttons.
+- The text-based search feature was implemented by fetching all Pokémon names (actually, the keywords used to search for them in the API) when server is starting and then checking if the list has any element that contains the input string (case insensitive). I am aware that this is quite inefficient but it was the most straightforward way to implement this feature. I improved the performance by taking only the first 10 elements that match the search string, this paired with the Stream module makes the search considerably faster because it stops searching as soon as it finds the 10th element (Stream functions are lazy, so they only process the elements they need to), this alone made the search go from 151.547s to 2.431s when testing with the string "a" (probably one of the worst cases). I considered using a trie data structure to store the Pokémon names, but ended up not doing it because the current implementation is already fast enough for 10 elements at a time. This combined with pagination would effectively solve the problem. Unfortunately, I was not able to implement pagination within the recommended time frame.
 - The application does not have a cache mechanism. This was an optional requirement that I did not complete because I have already spent the recommended amount of time on this project.
 
 
 ## Technologies Used
 
-- **Phoenix Framework**: The backend framework used to render the interface and handle requests.
+- **Phoenix Framework**: The backend framework used for rendering the interface and handling requests.
 - **PokeAPI**: Public API used to fetch Pokémon data.
 - **HTTPoison**: To make HTTP requests to PokeAPI.
 - **Jason**: Used to parse the JSON responses from PokeAPI.
@@ -62,7 +62,7 @@ By default, the application will be available at http://localhost:4000 from your
 4. Usage
 
     On the homepage, you can search for a Pokémon by entering its name or ID.
-    The Pokémon’s name, ID, and sprite will be displayed if found.
+    The Pokémon's name, ID, and sprite will be displayed if found.
     You can use the "Previous" and "Next" buttons to navigate between Pokémon by their ID.
 
 5. Tests
@@ -72,6 +72,15 @@ To run the automated tests, execute the following command:
 ```bash
 mix test
 ```
+
+## Future Improvements
+- Implement a cache mechanism to store Pokémon data and reduce the number of requests to the PokeAPI.
+- Implement pagination for when the text-based search feature returns more than 10 results.
+- Improve the text-based search feature's efficiency (possibly by using a trie data structure).
+- Refactor the ID-based navigation to make it more responsive (possibly using LiveView events). This would also allow using numbers in the input without the application treating them as IDs (which would mean that it would no longer be possible to search by ID but this could be implemented in a different way later).
+- Add more information about the Pokémon, such as its type.
+- Add more features, such as the ability to order Pokémon alphabetically or by ID (currently, they are ordered by ID) and the ability to filter Pokémon by type.
+- Improve the application's design and user interface. 
 
 ## Notes
 

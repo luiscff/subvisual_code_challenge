@@ -45,12 +45,12 @@ defmodule PokemonApp.PokemonList do
   end
 
   @doc """
-  Retorna a lista de Pokémons que contém o texto fornecido.
+  Retorna a lista de Pokémons que contém o texto fornecido, limitando a 10 resultados.
   """
   def search(text) do
     get()
-    |> Enum.filter(fn pokemon_name ->
-      String.contains?(String.downcase(pokemon_name), String.downcase(text))
-    end)
+    |> Stream.filter(fn pokemon_name ->
+      String.contains?(String.downcase(pokemon_name), String.downcase(text)) end)
+    |> Enum.take(10)
   end
 end
